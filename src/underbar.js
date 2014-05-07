@@ -163,7 +163,8 @@ var _ = {};
       }
       else{
         for(var i = 0; i < collection.length; i++){
-          res.push(functionOrKey.apply(this, collection));
+          var subj = collection[i];
+          res.push(subj[functionOrKey].apply(subj))
         } 
       }
       return res;
