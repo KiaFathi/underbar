@@ -39,11 +39,10 @@ var _ = {};
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
-    var l = array.length - 1;
     if(n === undefined){
-      return array[l];
+      return array.pop();
     }
-    else if(l - n < 0){
+    else if(array.length - n < 0){
       return array;
     }
     else{
