@@ -100,6 +100,14 @@ var _ = {};
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    var res = collection;
+    var removes = _.filter(collection, test);
+    for(var i = 0; i < removes.length; i ++){
+      var cur = removes[i];
+      var resind = _.indexOf(res,cur);
+      res.splice(resind,1);
+    }
+    return res;
   };
 
   // Produce a duplicate-free version of the array.
