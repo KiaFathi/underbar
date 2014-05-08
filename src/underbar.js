@@ -199,21 +199,21 @@ var _ = {};
       }
       return item === target;
     }, false);
-  };
+  }
 
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
     if(collection.length === 0){
       return true;
-    }else if(typeof(iterator) === "undefined"){
-      return true != _.contains(collection, false);
-    }else{
-      var count = 0;
-      for(var i = 0; i < collection.length; i ++){
-        if(iterator(collection[i])){
-          count ++;
-        }
+    }
+    if(typeof(iterator) === "undefined"){
+      iterator = _.identity;
+    }
+    var count = 0;
+    for(var i = 0; i < collection.length; i ++){
+      if(iterator(collection[i])){
+        count ++;
       }
     }
     return count === collection.length; 
@@ -223,7 +223,17 @@ var _ = {};
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-  };
+    if(typeof(iterator) === "undefined"){
+      iterator = _.identity
+    }
+    var count = 0;
+    for(var i = 0; i < collection.length; i++){
+      if(iterator(collection[i])){
+        count ++;
+      }
+    }
+    return count > 0;
+  }
 
 
   /**
