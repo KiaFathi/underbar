@@ -180,12 +180,19 @@ var _ = {};
   //     return total + number;
   //   }, 0); // should be 6
   _.reduce = function(collection, iterator, accumulator) {
-    var acc = 0;
-    _.map(collection, function(value){
-      acc += iterator(accumulator, value);
-    })
-    return acc;
-  };
+    if(Array.isArray(collection)){
+      _.map(collection, function(value){
+        accumulator = iterator(accumulator, value);
+      });
+    }
+    else{
+      for(var key in collection){
+        accumulator = iterator(accumulator, collection[key]);
+      }
+    }
+    return accumulator;
+
+  }
 
   // Determine if the array or object contains a given value (using `===`).
   _.contains = function(collection, target) {
@@ -198,7 +205,6 @@ var _ = {};
       return item === target;
     }, false);
   };
-
 
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
