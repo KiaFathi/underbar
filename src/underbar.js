@@ -204,7 +204,20 @@ var _ = {};
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-  };
+    if(collection.length === 0){
+      return true;
+    }else if(typeof(iterator) === "undefined"){
+      return true != _.contains(collection, false);
+    }else{
+      var count = 0;
+      for(var i = 0; i < collection.length; i ++){
+        if(iterator(collection[i])){
+          count ++;
+        }
+      }
+    }
+    return count === collection.length; 
+  }
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
