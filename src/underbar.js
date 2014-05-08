@@ -41,11 +41,9 @@ var _ = {};
   _.last = function(array, n) {
     if(n === undefined){
       return array.pop();
-    }
-    else if(array.length - n < 0){
+    }else if(array.length - n < 0){
       return array;
-    }
-    else{
+    }else{
       return array.slice(array.length-n,array.length);
     }
   };
@@ -60,8 +58,7 @@ var _ = {};
       for(var i = 0; i <collection.length; i++){
         iterator(collection[i], i, collection);
       }
-    }
-    else{
+    }else{
       for(var key in collection){
         iterator(collection[key], key, collection);
       }
@@ -159,8 +156,7 @@ var _ = {};
       return _.map(collection, function(value){
         if(isFunc){
           return (functionOrKey).apply(value);
-        }
-        else{
+        }else{
           return value[functionOrKey].apply(value);
         }
       })
@@ -184,8 +180,7 @@ var _ = {};
       _.map(collection, function(value){
         accumulator = iterator(accumulator, value);
       });
-    }
-    else{
+    }else{
       for(var key in collection){
         accumulator = iterator(accumulator, collection[key]);
       }
