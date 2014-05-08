@@ -180,6 +180,11 @@ var _ = {};
   //     return total + number;
   //   }, 0); // should be 6
   _.reduce = function(collection, iterator, accumulator) {
+    var acc = 0;
+    _.map(collection, function(value){
+      acc += iterator(accumulator, value);
+    })
+    return acc;
   };
 
   // Determine if the array or object contains a given value (using `===`).
