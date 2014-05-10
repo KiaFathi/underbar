@@ -155,9 +155,9 @@ var _ = {};
       var isFunc = (typeof(functionOrKey) === "function");
       return _.map(collection, function(value){
         if(isFunc){
-          return (functionOrKey).apply(value);
+          return (functionOrKey).apply(value, args);
         }else{
-          return value[functionOrKey].apply(value);
+          return value[functionOrKey].apply(value, args);
         }
       })
     }
